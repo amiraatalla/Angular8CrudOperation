@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-between">
+    <h4>Update Employee</h4>
+    <button mat-button (click)="onClose()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+
+<div style="overflow: auto; height: 450px;">
+    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+
+
+        <div class="m-3 input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Employee ID</span>
+            </div>
+            <input readonly='readonly' type="text" class="form-control" name="id" #id="ngModel"
+                [(ngModel)]="service.formData.id">
+        </div>
+      
+
+        <div class="m-3 input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">First Name</span>
+            </div>
+            <input required minlength="2" type="text" class="form-control" name="firstName" #firstName="ngModel"
+                [(ngModel)]="service.formData.firstName">
+        </div>
+        <div class="text-left text-danger" *ngIf="firstName.invalid && firstName.touched">
+            Please enter Employee First Name
+        </div>
+
+
+
+
+        <div class="m-3 input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Last Name</span>
+            </div>
+            <input required minlength="2" type="text" class="form-control" name="lastName" #lastName="ngModel"
+                [(ngModel)]="service.formData.lastName">
+        </div>
+        <div class="text-left text-danger" *ngIf="lastName.invalid && lastName.touched">
+            Please enter Employee Last Name
+        </div>
+
+        
+        <div class="m-3 input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Employee Email</span>
+            </div>
+            <input required type="text" class="form-control" name="email" #email="ngModel"
+                [(ngModel)]="service.formData.email">
+        </div>
+        <div class="text-left text-danger" *ngIf="email.invalid && email.touched">
+            Please enter Employee Email
+        </div>
+
+
+        <div class="m-3 input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">dob</span>
+            </div>
+            <input required [matDatepicker]="picker" type="text" class="form-control" name="dob" #dob="ngModel"
+                [(ngModel)]="service.formData.dob">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+        </div>
+
+
+
+        <button class="mt-4" mat-raised-button color="primary" type="submit" [disabled]='form.invalid'>Update
+            Employee</button>
+    </form>
+</div>
